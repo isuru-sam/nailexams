@@ -1,0 +1,70 @@
+https://www.callicoder.com/spring-boot-spring-security-jwt-mysql-react-app-part-4/
+npm -version
+6.4.1
+
+node -v
+v8.12.0
+
+
+
+npm install -g create-react-app
+
+
+npm install -g npm@latest to update npm because it is sometimes buggy.
+rm -rf node_modules to remove the existing modules.
+npm install to re-install the project dependencies.
+
+
+npm install antd react-router-dom --save
+
+npm install react-app-rewired babel-plugin-import react-app-rewire-less --save-dev
+
+package.json
+"scripts": {
+  "start": "react-scripts start",
+  "build": "react-scripts build",
+  "test": "react-scripts test --env=jsdom",
+  "eject": "react-scripts eject"
+}
+with these scripts -
+
+"scripts": {
+  "start": "react-app-rewired start",
+  "build": "react-app-rewired build",
+  "test": "react-app-rewired test --env=jsdom",
+  "eject": "react-scripts eject"
+}
+
+config-overrides.js
+
+const { injectBabelPlugin } = require('react-app-rewired');
+const rewireLess = require('react-app-rewire-less');
+
+module.exports = function override(config, env) {
+    config = injectBabelPlugin(['import', { libraryName: 'antd', style: true }], config);
+    config = rewireLess.withLoaderOptions({
+      modifyVars: {
+          "@layout-body-background": "#FFFFFF",
+          "@layout-header-background": "#FFFFFF",
+          "@layout-footer-background": "#FFFFFF"
+      },
+      javascriptEnabled: true
+    })(config, env);
+    return config;
+};
+
+sudo docker run -p 3306:3306 --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:latest
+
+
+
+sudo docker exec -t -i 160167b4cfcb mysql -uroot -pmy-secret-pw  <<< "select database();"
+create database polling_app;
+
+"proxy": "http://localhost:5000"
+
+git remote add origin https://github.com/isuru-sam/nailexams.git
+
+
+
+React Urls
+-https://lucybain.com/blog/2016/react-state-vs-pros/
